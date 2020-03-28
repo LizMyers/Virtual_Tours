@@ -1,14 +1,21 @@
+//Virtual Tours
+//Featuring top attractions in cities where G. has offices
+//By @lizmyers, @lguinn 
+//Advisors: @pvergadia
+//Content: [ea. city "owner" will be listed here]
+//March 28, 2020
+//Version 1.0
+//License: MIT? - open source. learning project
+
 'use strict';
  
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const {WebhookClient} = require('dialogflow-fulfillment');
-const {Card, Suggestion} = require('dialogflow-fulfillment');
+const {Card} = require('dialogflow-fulfillment');
  
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
-  //virtual-tours-usycht MUST MATCH Dialogflow project can't mix 'n match
-  //ws (websocket is correct as is the / at the end)
   databaseURL: 'ws://virtual-tours-usycht.firebaseio.com/'
 });
 
@@ -59,14 +66,16 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   }
 
   function getSiteHandler(agent) {
-    const userSite = agent.parameters.site;
+    let userSiteName = (agent.parameters.site).toLowerCase();
+    const userSite = userSiteName.capitalize();
+
     return admin.database().ref('LonSites/').once('value').then((snapshot) => {
      
       //setup vars to build a display card
       const minTime = snapshot.child(userSite + '/min_time').val();
       const maxTime = snapshot.child(userSite + '/max_time').val();
       const duration = `TIME: `+ minTime + ` - ` + maxTime + ' hours';
-
+      const category = snapshot.child(userSite + '/category').val(); 
       const what = snapshot.child(userSite + '/what').val();
       const why = snapshot.child(userSite + '/why').val();
       const image = snapshot.child(userSite + '/image').val();
@@ -74,23 +83,22 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
 
        if(what !== null){
          
-        //speak a final phrase
-        //@Priyanka how to have the agent speak more of the result if there's no surface/display?
-        //Conversely, if we have a display - maybe we should drop the final spoken 'Have fun...'
-        agent.add(`Have fun at  ${userSite} !`);
-       
-        //display a card
-        agent.add(new Card({
-            title: userSite,
-            subtitle: `Landmarks`,
-            text: duration + '  \n  \n WHAT: ' + what + '  \n  \n WHY: ' + why,
-            buttonText: `more`,
-            buttonUrl: link,
-            //image: 'https://firebasestorage.googleapis.com/v0/b/virtual-tours-usycht.appspot.com/o/big_ben.jpg'
-        })
-        );//end card
+            agent.add(`Here's what I have for ${userSite} .`);
+
+            //display a card w/image from Firebase Storage
+            
+            agent.add(new Card({
+                title: userSite,
+                subtitle: category,
+                text: duration + '  \n  \n WHAT: ' + what + '  \n  \n WHY: ' + why,
+                imageUrl: image,
+                buttonText: 'more',
+                buttonUrl: link,
+            }),
+          );
+
        } else { //couldn't access data
-         agent.add(`Sorry, I couldn't find the data.`)
+         agent.add(`Sorry, I couldn't find the data.`);
        } //end if/else
     }); // end snapshot
   }//end handler function
@@ -104,7 +112,6 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
 });
 
 // Helper Functions ------------------------------------------------------------------------------
-
-function capitalize(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+String.prototype.capitalize = function() {
+  return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+};
