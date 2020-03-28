@@ -7,6 +7,8 @@ const {Card, Suggestion} = require('dialogflow-fulfillment');
  
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
+  //virtual-tours-usycht MUST MATCH Dialogflow project can't mix 'n match
+  //ws (websocket is correct as is the / at the end)
   databaseURL: 'ws://virtual-tours-usycht.firebaseio.com/'
 });
 
