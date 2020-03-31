@@ -11,7 +11,7 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const {WebhookClient} = require('dialogflow-fulfillment');
-const {Card, Suggestion, Image} = require('dialogflow-fulfillment');
+const {Card, Suggestion} = require('dialogflow-fulfillment');
 //const {Image} = require('actions-on-google');
 
 admin.initializeApp({
@@ -21,9 +21,8 @@ admin.initializeApp({
 
 process.env.DEBUG = 'dialogflow:debug'; // enables lib debugging statements
 
-const userCity = 'London';
+let userCity = '';
 let userCat = '';
-let catArr ='';
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
   const agent = new WebhookClient({ request, response });
@@ -37,9 +36,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
 
     // const intro = <speak><audio src="https://actions.google.com/sounds/v1/transportation/ship_bell.ogg"><desc>Sound of a ship bell.</desc>Audio resource for a ship bell failed to load.</audio></speak>
 
-    const welcome = `Let\'s take a virtual tour of `+ userCity + `. Are you more interested in landmarks, museums, or cultural icons?`
-    
-    //const welcome = <speak><audio src="https://actions.google.com/sounds/v1/transportation/ship_bell.ogg"><desc>Sound of a ship bell.</desc>Audio resource for a ship bell failed to load.</audio>Let's take a virtual tour. Where would you like to go - San Francisco or London</speak>
+    const welcome = `Let's take a virtual tour. Where would you like to go - San Francisco or London`;
      
       if (curHr < 12) {
         greet = "Good morning! " + welcome;
@@ -50,9 +47,8 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
       }
 
     agent.add(greet);
-    agent.add(new Suggestion (`landmarks`));
-    agent.add(new Suggestion (`museums`));
-    agent.add(new Suggestion (`cultural icons`));
+    agent.add(new Suggestion (`San Francisco`));
+    agent.add(new Suggestion (`London`));
   }
 
   const randomErrorMsgs = [
@@ -89,8 +85,8 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   }
 
   function getCityHandler(agent){
-    const userCity = agent.parameters.city;
-    const getCategoryMsg = `Got it -   ` + userCity + `. Are you interested in landmarks, museums, or cultural icons?`;
+    userCity = agent.parameters.city;
+    const getCategoryMsg = `Got it,  ` + userCity + `. Are you interested in landmarks, museums, or cultural icons?`;
 
     agent.add(getCategoryMsg);
     agent.add(new Suggestion (`landmarks`));
@@ -101,27 +97,51 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   function getCategoryHandler(agent) {
     
     userCat = agent.parameters.category;
+      
+  //  return admin.database().ref(userCity).once('value').then((snapshot) => {
+  //     let iconsArr = [];
+    
+  //     snapshot.forEach(childSnapshot => {
+    
+  //       childSnapshot.forEach(data => {
+  //         var category = {}
+  //         city.category = data.key
+  //         category.site = data.val()
+  //         array.push(category)
+  //       })
+  //     })
+  //     console.log(array) // We should have correct data here
+  //   })
 
-    //how to build arrays dynamically?
-    //SF
-    // const iconsArr = [`Cable Cars`, `Union Square `, `Beach Blanket Revue`];
-    // const landmarksArr = [`Sutro Baths`, `Angel Island`, `Winchester House`];
-    // const museumsArr = [`Asian Art Museum`, `De Young Museum`, `Monterey Bay Aquarium`];
+  let iconsArr = [];
+  let landmarksArr = [];
+  let museumsArr = [];
+  let catArr = [];
 
-    //LON
-    const iconsArr = [`Picadilly Circus`, `Fortnum and Mason`, `Tower of London`];
-    const landmarksArr = [`Big Ben`, `Buckingham Palace`, `Westminster Abbey`];
-    const museumsArr = [`Tate Modern`, `The British Museum`, `Natural History Museum`];
+  switch(userCity){
+    case 'London':
+      iconsArr = [`Picadilly Circus`, `Fortnum and Mason`, `Tower of London`];
+      landmarksArr = [`Big Ben`, `Buckingham Palace`, `Westminster Abbey`];
+      museumsArr = [`Tate Modern`, `The British Museum`, `Natural History Museum`];
+    break;
+    case 'San Francisco':
+      iconsArr = [`Cable Cars`, `Union Square `, `Beach Blanket Revue`];
+      landmarksArr = [`Sutro Baths`, `Angel Island`, `Winchester House`];
+      museumsArr = [`Asian Art Museum`, `De Young Museum`, `Monterey Bay Aquarium`];
+     break;
+  }
 
-    if(userCat == 'icons'){
-      catArr = iconsArr;
-    } else if (userCat == 'landmarks'){
-     catArr = landmarksArr;
-    } else if(userCat == 'museums') {
-      catArr = museumsArr;
+    if(userCat === 'icons'){
+       catArr = iconsArr;
+       userCat = 'cultural icons';
+    } else if (userCat === 'landmarks'){
+       catArr = landmarksArr;
+    } else if(userCat === 'museums') {
+       catArr = museumsArr;
     }
 
-    agent.add(`Here are the `+ userCat +` I have: ` + catArr[0] + ', ' + catArr[1] + `,  and `+ catArr[2]);
+    agent.add(`Here are the `+ userCat +` I have in `+ userCity + `: ` 
+    + catArr[0] + ', ' + catArr[1] + `,  and `+ catArr[2]);
     agent.add(new Suggestion(catArr[0]));
     agent.add(new Suggestion(catArr[1]));
     agent.add(new Suggestion(catArr[2]));     
@@ -136,7 +156,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     return admin.database().ref(userCity).once('value').then((snapshot) => {
      
       //setup vars to build a display card
-      const minTime = snapshot.child('/' + userCat + '/' + userSite + '/min_time').val();
+      const minTime = snapshot.child( '/' + userCat + '/' + userSite + '/min_time').val();
       const maxTime = snapshot.child('/' + userCat + '/' + userSite + '/max_time').val();
       const duration = `TIME: `+ minTime + ` - ` + maxTime + ' hours';
       const category = snapshot.child('/' + userCat + '/' + userSite + '/category').val(); 
@@ -160,8 +180,6 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
                 buttonUrl: link,
             })
           );
-        
-
        } else { //couldn't access data
          //agent.add(`Sorry, I couldn't find the data.`);
          let randomInt = getRandomErrorMsg(0, 9);
