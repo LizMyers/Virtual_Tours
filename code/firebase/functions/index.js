@@ -1,9 +1,9 @@
 //Virtual Tours
 //Featuring top attractions in cities where G. has offices
 //By @lizmyers, @lguinn 
-//Advisors: @pvergadia
+//Advisors: @pvergadia, 
 //March 29, 2020
-//Version 1.35
+//Version 1.3.6
 //License: MIT? - open source. learning project
 
 'use strict';
@@ -11,7 +11,8 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const {WebhookClient} = require('dialogflow-fulfillment');
-const {Card, Suggestion} = require('dialogflow-fulfillment');
+const {Card, Suggestion, Image} = require('dialogflow-fulfillment');
+//const {Image} = require('actions-on-google');
 
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
@@ -21,6 +22,8 @@ admin.initializeApp({
 process.env.DEBUG = 'dialogflow:debug'; // enables lib debugging statements
 
 const userCity = 'San Francisco';
+let userCat = 'landmarks';
+let catArr ='landmarksArr';
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
   const agent = new WebhookClient({ request, response });
@@ -30,16 +33,17 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   function welcomeHandler(agent) {
     var today = new Date();
     var curHr = today.getHours();
-    var greet = "";
-    
-    const welcome = `<speak><audio src="https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg"></audio></speak> Let's take a virtual tour of `+ userCity + `. Are you more interested in landmarks, museums, or cultural icons?` ;
+    var greet = ``;
+    // var ssml =   <speak><audio src="https://actions.google.com/sounds/v1/animals/cat_purr_close.ogg"><desc>Sound of a cat purring.</desc>Audio resource for a cat purring failed to load.</audio></speak>
+
+    const welcome = `Let's take a virtual tour of `+ userCity + `. Are you more interested in landmarks, museums, or cultural icons?`;
     
     //const welcome = `Let's take a virtual tour. Where would you like to go - San Francisco or London`;
      
       if (curHr < 12) {
         greet = "Good morning! " + welcome;
       } else if (curHr < 18) {
-        greet = 'Good afternoon! ' + welcome + '<speak><audio src="https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg"></audio></speak>';
+        greet = 'Good afternoon! ' + welcome;
       } else {
         greet = "Good evening! " + welcome;
       }
@@ -93,54 +97,29 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     agent.add(new Suggestion (`cultural icons`));
  }
   
-  //LM to loop thru snapshot and generate options PROGRAMMATICALLY
   function getCategoryHandler(agent) {
     let userCat = agent.parameters.category;
-    if(userCity == 'San Francisco') {
-          switch(userCat){
-            case 'cultural icons':
-            case 'icons':
-              agent.add('The cultural icons I have are: Cable Cars, Union Square, and Beach Blanket Babylon Revue.');
-              agent.add(new Suggestion(`Cable Cars`));
-              agent.add(new Suggestion(`Union Square`));
-              agent.add(new Suggestion(`Beach Blanket Babylon...`));
-              break;
-            case 'landmarks':
-              agent.add('The landmarks I have are: Sutro Baths, Angel Island, and Winchester Mystery House.');
-              agent.add(new Suggestion(`Sutro Baths`));
-              agent.add(new Suggestion(`Angel Island`));
-              agent.add(new Suggestion(`Winchester House`));
-              break;
-            case 'museums':
-              agent.add(' The museums I have are:  Asian Art Museum, De Young Museum, and Monterey Bay Aquarium');
-              agent.add(new Suggestion(`Asian Art Museum`));
-              agent.add(new Suggestion(`De Young Museum`));
-              agent.add(new Suggestion(`Monterey Bay Aquarium`));
-              break;
-          }
-    } else if(userCity == 'London'){
-            switch(userCat){
-              case 'cultural icons':
-              case 'icons':
-                agent.add('Sure. The cultural icons I have are: Picadilly Circus, Fortnum and Mason, and Tower of London.');
-                agent.add(new Suggestion(`Picadilly Circus`));
-                agent.add(new Suggestion(`Fortnum & Mason`));
-                agent.add(new Suggestion(`Tower of London`));
-                break;
-              case 'landmarks':
-                agent.add('The landmarks I have are: Big Ben, Buckingham Palace, and Westminster Abbey');
-                agent.add(new Suggestion(`Big Ben`));
-                agent.add(new Suggestion(`Buckingham Palace`));
-                agent.add(new Suggestion(`Westminster Abbey`));
-                break;
-              case 'museums':
-                agent.add('Alright. For museums we have The Tate Modern, British Museum, and The Natural History Museum');
-                agent.add(new Suggestion(`Tate Modern`));
-                agent.add(new Suggestion(`British Museum`));
-                agent.add(new Suggestion(`Natural History`));
-                break;
-            }
-      }
+    //SF
+    const iconsArr = [`Cable Cars`, `Union Squar `, `Beach Blanket Babylon Revue`];
+    const landmarksArr = [`Sutro Baths`, `Angel Island`, `Winchester House`];
+    const museumsArr = [`Asian Art Museum`, `De Young Museum`, `Monterey Bay Aquarium`];
+    //LON
+    //let icons = [`Picadilly Circus`, `Fortnum and Mason`, `Tower of London`];
+    //let landmarks = [`Big Ben`, `Buckingham Palace`, `Westminter Abbey`];
+    //let museums = [`Tate Modern`, `The British Museum`, `Natural History Museum`];
+
+    if(userCat == 'icons'){
+       catArr = iconsArr;
+    } else if (userCat == 'landmarks'){
+      catArr = landmarksArr;
+    } else {
+      catArr = museumsArr;
+    }
+
+    agent.add(`Here are the `+ userCat +` I have: ` + catArr[0] + ', ' + catArr[1] + `,  and `+ catArr[2]);
+    agent.add(new Suggestion(catArr[0]));
+    agent.add(new Suggestion(catArr[1]));
+    agent.add(new Suggestion(catArr[2]));     
     agent.add(`Which would you like?`);
   }
 
@@ -152,14 +131,14 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     return admin.database().ref(userCity).once('value').then((snapshot) => {
      
       //setup vars to build a display card
-      const minTime = snapshot.child('/' + userSite + '/min_time').val();
-      const maxTime = snapshot.child('/' + userSite + '/max_time').val();
+      const minTime = snapshot.child('/' + userCat + '/' + userSite + '/min_time').val();
+      const maxTime = snapshot.child('/' + userCat + '/' + userSite + '/max_time').val();
       const duration = `TIME: `+ minTime + ` - ` + maxTime + ' hours';
-      const category = snapshot.child('/' + userSite + '/category').val(); 
-      const what = snapshot.child('/' + userSite + '/what').val();
-      const why = snapshot.child('/' + userSite + '/why').val();
-      const image = snapshot.child('/' + userSite + '/image').val();
-      const link = snapshot.child('/' + userSite + '/more').val();
+      const category = snapshot.child('/' + userCat + '/' + userSite + '/category').val(); 
+      const what = snapshot.child('/' + userCat + '/' + userSite + '/what').val();
+      const why = snapshot.child('/' + userCat + '/' + userSite + '/why').val();
+      const image = snapshot.child('/' + userCat + '/' + userSite + '/image').val();
+      const link = snapshot.child('/' + userCat + '/' + userSite + '/more').val();
 
        if(what !== null){
          
@@ -169,13 +148,14 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
             
             agent.add(new Card({
                 title: userSite,
-                subtitle: category,
+                subtitle:category,
                 text: duration + '  \n  \n WHAT: ' + what + '  \n  \n WHY: ' + why,
                 imageUrl: image,
                 buttonText: 'more',
                 buttonUrl: link,
             })
           );
+        
 
        } else { //couldn't access data
          //agent.add(`Sorry, I couldn't find the data.`);
