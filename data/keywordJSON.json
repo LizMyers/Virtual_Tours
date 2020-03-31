@@ -19,14 +19,14 @@
                     "image": "https://virtual-tours-usycht.appspot.com/buckingham-palace",
                     "more": "https://www.timeout.com/london/attractions/buckingham-palace"
                 },
-                "Fortnum And Mason": {
-                    "category": "Icon",
-                    "min_time": 0.5,
-                    "max_time": 1,
-                    "what": "In business for over 300 years, Fortnum & Mason is as historic as it is inspiring. A sweeping spiral staircase soars through the four-storey building, while light floods down from a central glass dome.\n\nA sweeping spiral staircase soars through the four-storey building, while light floods down from a central glass dome. The iconic F&M eau de nil blue and gold colour scheme with flashes of rose pink abounds on both the store design and the packaging of the fabulous ground-floor treats, including chocolates, biscuits, teas and preserves.",
-                    "why": "To visit the Queens grocery store and pick up a few gifts.",
-                    "image": "https:/virtual-tours-usycht.appspot.com/fortnum_and_mason.jpg",
-                    "more": "https://www.timeout.com/london/shopping/fortnum-mason"
+                "Westminster Abbey": {
+                    "category": "Landmark",
+                    "min_time": 1,
+                    "max_time": 2,
+                    "what": "Like the Pantheon Crypt in Paris, where you can see the tombs and memorials to great figures from history, Westminster Abbey is a popular attraction to peruse the graves, tablets, busts and stone dedications. In fact, seventeen monarchs are buried here, along with dukes, countesses and history’s ‘celebs’ (Darwin, Dickens, Hardy, etc). Founded by Benedictine monks in 960 AD, there have also been 16 royal weddings here and every single British coronation has taken place within the Abbey's walls since 1066.",
+                    "why": "To see Gothic grandeur at its most glorious",
+                    "image": "https:/virtual-tours-usycht.appspot.com/westminster_abbey.jpg",
+                    "more": "https://www.timeout.com/london/attractions/westminster-abbey"
                 }
             },
             "museums":{
@@ -77,14 +77,14 @@
                     "image": "https:/virtual-tours-usycht.appspot.com/tower_of_london.jpg",
                     "more": "https://www.timeout.com/london/attractions/tower-of-london-1"
                 },
-                "Westminster Abbey": {
-                    "category": "Landmark",
-                    "min_time": 1,
-                    "max_time": 2,
-                    "what": "Like the Pantheon Crypt in Paris, where you can see the tombs and memorials to great figures from history, Westminster Abbey is a popular attraction to peruse the graves, tablets, busts and stone dedications. In fact, seventeen monarchs are buried here, along with dukes, countesses and history’s ‘celebs’ (Darwin, Dickens, Hardy, etc). Founded by Benedictine monks in 960 AD, there have also been 16 royal weddings here and every single British coronation has taken place within the Abbey's walls since 1066.",
-                    "why": "To see Gothic grandeur at its most glorious",
-                    "image": "https:/virtual-tours-usycht.appspot.com/westminster_abbey.jpg",
-                    "more": "https://www.timeout.com/london/attractions/westminster-abbey"
+                "Fortnum and Mason": {
+                    "category": "Icon",
+                    "min_time": 0.5,
+                    "max_time": 1,
+                    "what": "In business for over 300 years, Fortnum & Mason is as historic as it is inspiring. A sweeping spiral staircase soars through the four-storey building, while light floods down from a central glass dome.\n\nA sweeping spiral staircase soars through the four-storey building, while light floods down from a central glass dome. The iconic F&M eau de nil blue and gold colour scheme with flashes of rose pink abounds on both the store design and the packaging of the fabulous ground-floor treats, including chocolates, biscuits, teas and preserves.",
+                    "why": "To visit the Queens grocery store and pick up a few gifts.",
+                    "image": "https:/virtual-tours-usycht.appspot.com/fortnum_and_mason.jpg",
+                    "more": "https://www.timeout.com/london/shopping/fortnum-mason"
                 }
             }
         },
