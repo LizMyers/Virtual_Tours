@@ -1,0 +1,168 @@
+{
+   "London": {
+      "Picadilly Circus": {
+         "category": "Icon",
+         "MIN_TIME": 0.25,
+         "MAX_TIME": 0.5,
+         "WHAT": "Like the Pantheon Crypt in Paris, where you can see the tombs and memorials to great figures from history, Westminster Abbey is a popular attraction to peruse the graves, tablets, busts and stone dedications. In fact, seventeen monarchs are buried here, along with dukes, countesses and history’s ‘celebs’ (Darwin, Dickens, Hardy, etc). Founded by Benedictine monks in 960 AD, there have also been 16 royal weddings here and every single British coronation has taken place within the Abbey's walls since 1066.",
+         "WHY": "You wouldn't go to NYC and skip Times Square now - would you?",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/picadilly_circus.jpg",
+         "MORE": "https://www.timeout.com/london/things-to-do/piccadilly-circus-1"
+      },
+      "Fortnum & Mason": {
+         "category": "Icon",
+         "MIN_TIME": 0.5,
+         "MAX_TIME": 1,
+         "WHAT": "In business for over 300 years, Fortnum & Mason is as historic as it is inspiring. A sweeping spiral staircase soars through the four-storey building, while light floods down from a central glass dome.\n\nA sweeping spiral staircase soars through the four-storey building, while light floods down from a central glass dome. The iconic F&M eau de nil blue and gold colour scheme with flashes of rose pink abounds on both the store design and the packaging of the fabulous ground-floor treats, including chocolates, biscuits, teas and preserves.",
+         "WHY": "To visit the Queens grocery store and pick up a few gifts.",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/fortnum_and_mason.jpg",
+         "MORE": "https://www.timeout.com/london/shopping/fortnum-mason"
+      },
+      "Tower of London": {
+         "category": "Icon",
+         "MIN_TIME": 2,
+         "MAX_TIME": 3,
+         "WHAT": "One of the capital’s best and most well known historical attractions. The Tower of London offers wonderful architecture, gruesome stories, hands-on activities for younger visitors, costumed actors and guides, and worryingly confident ravens.",
+         "WHY": "To see the crown jewels and interact with the Yomen. They delight in explaining the gruesome bits of British history.",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/tower_of_london.jpg",
+         "MORE": "https://www.timeout.com/london/attractions/tower-of-london-1"
+      },
+      "Big Ben": {
+         "category": "Landmark",
+         "MIN_TIME": 0.25,
+         "MAX_TIME": 0.5,
+         "WHAT": "Big Ben is the nickname of the Great Bell inside Westminster’s iconic clock tower, but even locals think ‘Big Ben’ when they see the Elizabeth Tower. You can’t get inside for a tour until 2021 due to maintenance work but you’re a minute away from the river, the Houses of Parliament and Westminster Abbey here, so it’s an easy visit.",
+         "WHY": "To see the world's most celebrated clock face to face.",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/big_ben.jpg",
+         "MORE": "https://www.timeout.com/london/attractions/big-ben-1"
+      },
+      "Buckingham Palace": {
+         "category": "Landmark",
+         "MIN_TIME": 0.5,
+         "MAX_TIME": 2,
+         "WHAT": "A chance to see world-famous art, glimpse regal opulence and get inside HRH’s headquarters. Tourist and locals alike know the façade of Buckingham Palace, which stands at the end of The Mall. But it was only in 1913 that this addition was made, by King George V and Queen Mary. Before that, in 1633, the palace wasn’t even royal – it belonged to Lord Goring, who was forced to hand over ownership to the Royal Family (under King George III) due to a flaw in his contract. Whoops! ",
+         "WHY": "To snoop around the most famous royal residence in the world.",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/buckingham_palace.jpg",
+         "MORE": "https://www.timeout.com/london/attractions/buckingham-palace"
+      },
+      "Westminster Abbey": {
+         "category": "Landmark",
+         "MIN_TIME": 1,
+         "MAX_TIME": 2,
+         "WHAT": "Like the Pantheon Crypt in Paris, where you can see the tombs and memorials to great figures from history, Westminster Abbey is a popular attraction to peruse the graves, tablets, busts and stone dedications. In fact, seventeen monarchs are buried here, along with dukes, countesses and history’s ‘celebs’ (Darwin, Dickens, Hardy, etc). Founded by Benedictine monks in 960 AD, there have also been 16 royal weddings here and every single British coronation has taken place within the Abbey's walls since 1066.",
+         "WHY": "To see Gothic grandeur at its most glorious",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/westminster_abbey.jpg",
+         "MORE": "https://www.timeout.com/london/attractions/westminster-abbey"
+      },
+      "The British Museum": {
+         "category": "Museum",
+         "MIN_TIME": 2,
+         "MAX_TIME": 4,
+         "WHAT": "Since it opened in 1759 – the first ever national museum for the public – the British Museum has been displaying global artefacts discovered by British explorers. Must-see gems include the Rosetta Stone and the Parthenon sculptures.",
+         "WHY": "The museum has over eight million objects in its collection, 50,000 of which are on display. That's a lot of bang for your buck, considering entrance to the main areas is free.",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/british_museum.jpg",
+         "MORE": "https://www.timeout.com/london/museums/british-museum"
+      },
+      "Natural History Museum": {
+         "category": "Museum",
+         "MIN_TIME": 2,
+         "MAX_TIME": 4,
+         "WHAT": "The magnificent South Kensington home of around 80 million plant, animal, fossil, rock and mineral specimens. This fascinating museum, which is also a world-class research institution, is full of natural wonders.",
+         "WHY": "To marvel at a 25.2 metre-long blue whale skeleton, a piece of Mars rock, Mary Anning's ichthyosaur fossil and lots more.",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/natural_history_museum.jpg",
+         "MORE": "https://www.timeout.com/london/museums/natural-history-museum"
+      },
+      "The Tate Modern": {
+         "category": "Museum",
+         "MIN_TIME": 2,
+         "MAX_TIME": 4,
+         "WHAT": "A riverside icon dedicated to all things modern and contemporary art. Based in what was the Bankside Power Station, you can discover works by the likes of Warhol, Dalí and Hockney, as well as unusual, eye-grabbing installations, which are all part of the free permanent collection.",
+         "WHY": "For some of the best art and architecture London has to offer. ",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/tate_modern.jpg",
+         "MORE": "https://www.timeout.com/london/art/tate-modern"
+      }
+   },
+   "San Francisco": {
+      "Sutro Baths": {
+         "category": "Landmark",
+         "MIN_TIME": 1,
+         "MAX_TIME": 2,
+         "WHAT": "The Sutro Baths was a large, privately owned public saltwater swimming pool complex in the Lands End area of the Outer Richmond District in western San Francisco, California. Built in 1896, it is located near the Cliff House, Seal Rocks, and Sutro Heights Park. Only the ruins remain as part of the Lands End park. Time depends on how much you want to hike around Lands End.",
+         "WHY": "For great views of the Pacific Ocean, and a hike that is not as busy as most of San Francisco. Lands End is used more by locals than by tourists.",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/picadilly_circus.jpg",
+         "MORE": "https://en.wikipedia.org/wiki/Sutro_Baths"
+      },
+      "Angel Island": {
+         "category": "Landmark",
+         "MIN_TIME": 3,
+         "MAX_TIME": 8,
+         "WHAT": "Taking the ferry over and back is part of the experience, but does add a lot of time. Take a picnic lunch if you want to spend the day.",
+         "WHY": "Because it is a fascinating park with amazing views of San Francisco.",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/picadilly_circus.jpg",
+         "MORE": "http://www.parks.ca.gov/?page_id=468"
+      },
+      "Winchester Mystery House": {
+         "category": "Landmark",
+         "MIN_TIME": 2,
+         "MAX_TIME": 3,
+         "WHAT": "Sara Winchester was a troubled heiress who heard spirits. To keep the spirits happy, she continuously added to her home on Winchester Avenue in San Jose, California. You can take a variety of tours.",
+         "WHY": "Because it is weird and spooky fun.",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/picadilly_circus.jpg",
+         "MORE": "https://winchestermysteryhouse.com/"
+      },
+      "Monterey Bay Aquarium": {
+         "category": "Museum",
+         "MIN_TIME": 2,
+         "MAX_TIME": 3,
+         "WHAT": "An aquarium, research station, and teaching institution that is just a short distance from the Pacific Monterey Canyon. Sea otters and harbor seals can be seen in and around the aquarium, along with a lot of fish. One of the best exhibits is a large variety of living jellyfish. Outdoors can include whale sightings as well.",
+         "WHY": "To enjoy the gift that Dave Packard gave his daughter Julie when she became a marine biologist!",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/picadilly_circus.jpg",
+         "MORE": "https://www.montereybayaquarium.org/"
+      },
+      "Asian Art Museum": {
+         "category": "Museum",
+         "MIN_TIME": 2,
+         "MAX_TIME": 4,
+         "WHAT": "The Asian Art Museum contains one of the most extensive collections of Asian art in the world, with more than 18,000 works in its permanent collection.  In particular, the Chinese collection, considered to be the best outside of China itself, is a point of pride. That section reveals jade carvings, Buddhist sculptures, decorative ceramics, ritual bronzes, and more.",
+         "WHY": "To see amazing artifacts and artworks, far above any collection outside Asia!",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/picadilly_circus.jpg",
+         "MORE": "https://asianart.org/"
+      },
+      "De Young Museum": {
+         "category": "Museum",
+         "MIN_TIME": 2,
+         "MAX_TIME": 4,
+         "WHAT": "Located in the middle of Golden Gate Park, this 125-year-old museum specializes in art from America, Africa, Oceania, and the Americas. In recent years, it’s become particularly known for its sprawling costume exhibits, from contemporary Muslim fashion to the contemporary designer Oscar de la Renta. The permanent collection spans the gamut from gowns, paintings, and textiles to ancient artifacts.",
+         "WHY": "Don’t miss the Hamon observation tower on the 9th floor: the stunning, glass-encased space overlooks all of Golden Gate Park, downtown San Francisco, the Bay, and the Marin headlands.",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/picadilly_circus.jpg",
+         "MORE": "https://deyoung.famsf.org/"
+      },
+      "Beach Blanket Babylon Revue": {
+         "category": "Icon",
+         "MIN_TIME": 3,
+         "MAX_TIME": 3,
+         "WHAT": "Wacky, saucy, and uniquely San Franciscan Beach Blanket Babylon claims the title of longest running musical revue in theater history. Its pun-laden send-ups of a shifting array of public figures, pop icons and dubious celebrities are loosely tied together under the auspices of a Snow White tale, but really this is just a vehicle to poke fun at everyone from Kim Kardashian and Hillary Clinton to the British Royal Family and Lady Gaga—all while sporting hats the size of small zeppelins.",
+         "WHY": "Why see this? For the hats!",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/picadilly_circus.jpg",
+         "MORE": "https://www.beachblanketbabylon.com/"
+      },
+      "Cable Cars": {
+         "category": "Icon",
+         "MIN_TIME": 0.5,
+         "MAX_TIME": 1,
+         "WHAT": "Hop aboard for views of Nob Hill, Fisherman’s Wharf, Russian Hill and the Bay. Make a stop-over at the Cable Car Museum at Mason and Washington streets to see the giant wheels turning the underground cables that power the cars. The Powell-Hyde line runs from the huge turnaround near Market and Powell, and goes to Fisherman's Wharf near Ghirardelli Square. Insider tip: don't start from one of the turnarounds: instead walk a few blocks down the line, and wave down the cable car there. The lines at the turnarounds can be over an hour long, but there is no line at the middle stops.",
+         "WHY": "Dating from the late 1800s, a ride on one of the three remaining cable car lines is still a classic San Francisco treat and a National Historic Landmark.",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/picadilly_circus.jpg",
+         "MORE": "https://www.sfcablecar.com/"
+      },
+      "Union Square": {
+         "category": "Icon",
+         "MIN_TIME": 0.25,
+         "MAX_TIME": 0.5,
+         "WHAT": "Union Square is a public plaza bordered by Geary, Powell, Post and Union Square has one of the largest collections of department stores, upscale boutiques, gift shops, art galleries, and beauty salons in the United States, making ita major tourist destination  Grand hotels and small inns, as well as repertory, off-Broadway, and single-act theaters also contribute to the area's dynamic, 24-hour character. Stockton Streets. \"Union Square\" also refers to the central shopping, hotel, and theater district that surrounds the plaza for several blocks.",
+         "WHY": "Visit the Dewey Monument at the center of Union Square. It is a statue of Nike, the ancient Greek Goddess of Victory.",
+         "IMAGE": "gs://virtualtours-a7cea.appspot.com/picadilly_circus.jpg",
+         "MORE": "https://en.wikipedia.org/wiki/Union_Square,_San_Francisco"
+      }
+   }
+}
