@@ -1,7 +1,7 @@
 //Virtual Tours
 //Featuring top attractions in cities where G. has offices
 //By @lizmyers, @lguinn 
-//Advisors: @pvergadia, 
+//Advisors: @pvergadia, @jearleycha
 //March 29, 2020
 //Version 1.3.6
 //License: MIT? - open source. learning project
@@ -21,9 +21,9 @@ admin.initializeApp({
 
 process.env.DEBUG = 'dialogflow:debug'; // enables lib debugging statements
 
-const userCity = 'San Francisco';
-let userCat = 'landmarks';
-let catArr ='landmarksArr';
+const userCity = 'London';
+let userCat = '';
+let catArr ='';
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
   const agent = new WebhookClient({ request, response });
@@ -34,11 +34,12 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     var today = new Date();
     var curHr = today.getHours();
     var greet = ``;
-    // var ssml =   <speak><audio src="https://actions.google.com/sounds/v1/animals/cat_purr_close.ogg"><desc>Sound of a cat purring.</desc>Audio resource for a cat purring failed to load.</audio></speak>
 
-    const welcome = `Let's take a virtual tour of `+ userCity + `. Are you more interested in landmarks, museums, or cultural icons?`;
+    // const intro = <speak><audio src="https://actions.google.com/sounds/v1/transportation/ship_bell.ogg"><desc>Sound of a ship bell.</desc>Audio resource for a ship bell failed to load.</audio></speak>
+
+    const welcome = `Let\'s take a virtual tour of `+ userCity + `. Are you more interested in landmarks, museums, or cultural icons?`
     
-    //const welcome = `Let's take a virtual tour. Where would you like to go - San Francisco or London`;
+    //const welcome = <speak><audio src="https://actions.google.com/sounds/v1/transportation/ship_bell.ogg"><desc>Sound of a ship bell.</desc>Audio resource for a ship bell failed to load.</audio>Let's take a virtual tour. Where would you like to go - San Francisco or London</speak>
      
       if (curHr < 12) {
         greet = "Good morning! " + welcome;
@@ -94,25 +95,29 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     agent.add(getCategoryMsg);
     agent.add(new Suggestion (`landmarks`));
     agent.add(new Suggestion (`museums`));
-    agent.add(new Suggestion (`cultural icons`));
+    agent.add(new Suggestion (`icons`));
  }
   
   function getCategoryHandler(agent) {
-    let userCat = agent.parameters.category;
+    
+    userCat = agent.parameters.category;
+
+    //how to build arrays dynamically?
     //SF
-    const iconsArr = [`Cable Cars`, `Union Squar `, `Beach Blanket Babylon Revue`];
-    const landmarksArr = [`Sutro Baths`, `Angel Island`, `Winchester House`];
-    const museumsArr = [`Asian Art Museum`, `De Young Museum`, `Monterey Bay Aquarium`];
+    // const iconsArr = [`Cable Cars`, `Union Square `, `Beach Blanket Revue`];
+    // const landmarksArr = [`Sutro Baths`, `Angel Island`, `Winchester House`];
+    // const museumsArr = [`Asian Art Museum`, `De Young Museum`, `Monterey Bay Aquarium`];
+
     //LON
-    //let icons = [`Picadilly Circus`, `Fortnum and Mason`, `Tower of London`];
-    //let landmarks = [`Big Ben`, `Buckingham Palace`, `Westminter Abbey`];
-    //let museums = [`Tate Modern`, `The British Museum`, `Natural History Museum`];
+    const iconsArr = [`Picadilly Circus`, `Fortnum and Mason`, `Tower of London`];
+    const landmarksArr = [`Big Ben`, `Buckingham Palace`, `Westminster Abbey`];
+    const museumsArr = [`Tate Modern`, `The British Museum`, `Natural History Museum`];
 
     if(userCat == 'icons'){
-       catArr = iconsArr;
+      catArr = iconsArr;
     } else if (userCat == 'landmarks'){
-      catArr = landmarksArr;
-    } else {
+     catArr = landmarksArr;
+    } else if(userCat == 'museums') {
       catArr = museumsArr;
     }
 
