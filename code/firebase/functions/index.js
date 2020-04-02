@@ -2,9 +2,8 @@
 //Featuring top attractions in cities where G. has offices
 //By @lizmyers, @lguinn 
 //Advisors: @pvergadia, @jearleycha
-//March 29, 2020
-//Version 1.3.6
-//License: MIT? - open source. learning project
+//April 2, 2020
+//Version 1.4.0
 
 'use strict';
  
@@ -33,8 +32,6 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     var today = new Date();
     var curHr = today.getHours();
     var greet = ``;
-
-    // const intro = <speak><audio src="https://actions.google.com/sounds/v1/transportation/ship_bell.ogg"><desc>Sound of a ship bell.</desc>Audio resource for a ship bell failed to load.</audio></speak>
 
     const welcome = `Let's take a virtual tour. Where would you like to go - San Francisco or London`;
      
@@ -96,56 +93,23 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   
   function getCategoryHandler(agent) {
     
-    userCat = agent.parameters.category;
-      
-  //  return admin.database().ref(userCity).once('value').then((snapshot) => {
-  //     let iconsArr = [];
-    
-  //     snapshot.forEach(childSnapshot => {
-    
-  //       childSnapshot.forEach(data => {
-  //         var category = {}
-  //         city.category = data.key
-  //         category.site = data.val()
-  //         array.push(category)
-  //       })
-  //     })
-  //     console.log(array) // We should have correct data here
-  //   })
+  userCat = agent.parameters.category;
 
-  let iconsArr = [];
-  let landmarksArr = [];
-  let museumsArr = [];
-  let catArr = [];
-
-  switch(userCity){
-    case 'London':
-      iconsArr = [`Picadilly Circus`, `Fortnum and Mason`, `Tower of London`];
-      landmarksArr = [`Big Ben`, `Buckingham Palace`, `Westminster Abbey`];
-      museumsArr = [`Tate Modern`, `The British Museum`, `Natural History Museum`];
-    break;
-    case 'San Francisco':
-      iconsArr = [`Cable Cars`, `Union Square `, `Beach Blanket Revue`];
-      landmarksArr = [`Sutro Baths`, `Angel Island`, `Winchester House`];
-      museumsArr = [`Asian Art Museum`, `De Young Museum`, `Monterey Bay Aquarium`];
-     break;
-  }
-
-    if(userCat === 'icons'){
-       catArr = iconsArr;
-       userCat = 'cultural icons';
-    } else if (userCat === 'landmarks'){
-       catArr = landmarksArr;
-    } else if(userCat === 'museums') {
-       catArr = museumsArr;
-    }
-
-    agent.add(`Here are the `+ userCat +` I have in `+ userCity + `: ` 
-    + catArr[0] + ', ' + catArr[1] + `,  and `+ catArr[2]);
-    agent.add(new Suggestion(catArr[0]));
-    agent.add(new Suggestion(catArr[1]));
-    agent.add(new Suggestion(catArr[2]));     
-    agent.add(`Which would you like?`);
+  return admin.database().ref(userCity).once('value').then((snapshot) => {
+      var sitesArr = [];
+        snapshot.child('/' + userCat + '/').forEach(data => {
+          var site = '';
+          site = data.key;
+          sitesArr.push(site);
+        })
+     
+        agent.add(`Here are the `+ userCat +` I have: ` 
+        + sitesArr[0] + ', ' + sitesArr[1] + `,  and `+ sitesArr[2]);
+        agent.add(new Suggestion(sitesArr[0]));
+        agent.add(new Suggestion(sitesArr[1]));
+        agent.add(new Suggestion(sitesArr[2]));     
+        agent.add(`Which would you like?`);
+    })
   }
 
   function getSiteHandler(agent) {
@@ -181,7 +145,6 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
             })
           );
        } else { //couldn't access data
-         //agent.add(`Sorry, I couldn't find the data.`);
          let randomInt = getRandomErrorMsg(0, 9);
          let errorMsg = randomErrorMsgs[randomInt];
          agent.add(errorMsg);
