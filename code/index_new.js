@@ -48,7 +48,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     agent.add(`Please try again?`);
   }
   
-  function getcategoryHandler(agent) {
+  function getCategoryHandler(agent) {
     const userCat = (agent.parameters.category).toLowerCase();
     const iconsArr = [];
     const landmarksArr = [];
@@ -88,7 +88,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
           agent.add(`Which would you like?`);
         }//end switch
      );//end snapshot
- }//end getcategoryHandler
+ }//end getCategoryHandler
 
   function getSiteHandler(agent) {
 
@@ -134,7 +134,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   let intentMap = new Map();
   intentMap.set('Welcome_Intent', welcomeHandler);
   intentMap.set('Fallback_Intent', fallbackHandler);
-  intentMap.set('Get_category_Intent', getcategoryHandler);
+  intentMap.set('Get_Category_Intent', getCategoryHandler);
   intentMap.set('Get_Site_Intent', getSiteHandler);
   agent.handleRequest(intentMap);
 });
