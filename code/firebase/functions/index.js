@@ -11,7 +11,6 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const {WebhookClient} = require('dialogflow-fulfillment');
 const {Card, Suggestion} = require('dialogflow-fulfillment');
-//const {Image} = require('actions-on-google');
 
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
@@ -101,17 +100,16 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
           var site = '';
           site = data.key;
           sitesArr.push(site);
-        })
+        });
      
-        agent.add(`Here are the `+ userCat +` I have: ` 
-        + sitesArr[0] + ', ' + sitesArr[1] + `,  and `+ sitesArr[2]);
+        agent.add(`Here are the `+ userCat +` I have: ` + sitesArr[0] + ', ' + sitesArr[1] + `,  and `+ sitesArr[2]);
         agent.add(new Suggestion(sitesArr[0]));
         agent.add(new Suggestion(sitesArr[1]));
         agent.add(new Suggestion(sitesArr[2]));     
         agent.add(`Which would you like?`);
-    })
+    });
   }
-
+//This function fetches data from Realtime Database & displays it on a basic card
   function getSiteHandler(agent) {
     const userSite = agent.parameters.site;
     //let userSiteNameLowerCase = userSiteName.toLowerCase;
@@ -122,7 +120,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
       //setup vars to build a display card
       const minTime = snapshot.child( '/' + userCat + '/' + userSite + '/min_time').val();
       const maxTime = snapshot.child('/' + userCat + '/' + userSite + '/max_time').val();
-      const duration = `TIME: `+ minTime + ` - ` + maxTime + ' hours';
+      const duration = '**Time:**  ' + minTime + ' - ' + maxTime + ' hours';
       const category = snapshot.child('/' + userCat + '/' + userSite + '/category').val(); 
       const what = snapshot.child('/' + userCat + '/' + userSite + '/what').val();
       const why = snapshot.child('/' + userCat + '/' + userSite + '/why').val();
@@ -133,12 +131,14 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
          
             agent.add(`Here's what I have for ${userSite} .`);
 
-            //display a card w/image from Firebase Storage
-            
+			if(userSite == 'Cable Cars'){
+            	//play a sound to test ssml
+            	agent.add('<speak><audio src="https://actions.google.com/sounds/v1/transportation/ship_bell.ogg"><desc>Cable Car Bell</desc>Cable Car (sound didn\'t load)</audio></speak>');
+            }
             agent.add(new Card({
                 title: userSite,
                 subtitle:category,
-                text: duration + '  \n  \n WHAT: ' + what + '  \n  \n WHY: ' + why,
+                text: duration + '  \n  \n **What:**  ' + what + '  \n  \n **Why:**  ' + why,
                 imageUrl: image,
                 buttonText: 'more',
                 buttonUrl: link,
