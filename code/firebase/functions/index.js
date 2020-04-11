@@ -23,7 +23,7 @@ process.env.DEBUG = 'dialogflow:debug'; // enables lib debugging statements
 let userCity = '';
 let userCat = '';
 let userSite = '';
-let randomSite = '';
+let sitesArray = [];
 
 const randomSurpriseMsgs = [
   `surprise me`,
@@ -37,18 +37,18 @@ const randomSurpriseMsgs = [
   `live on the wild side`
 ];
 
-const randomInt = getRandom(0, 6);
-const randomSurpriseMsg = randomSurpriseMsgs[randomInt];
+const randomIntSurprise = getRandom(0, 6);
+const randomSurpriseMsg = randomSurpriseMsgs[randomIntSurprise];
 
 //welcome and help messages 
 const randomHelpMsgs = [
-  `Let's travel vicariously to cities where Google has offices. Choose from London and San Francisco. Or you can say: `+ randomSurpriseMsg + `. Now, what'll it be?`,
-  `Let's enjoy a little armchair travel. Would you like to see the sites in London or San Francisco? Or, you can say: ` + randomSurpriseMsg + `.`,
-  `Where should we go today? London, San Francisco?  Or you can say: `+ randomSurpriseMsg + `.  Now, what'll it be?`,
-  `Where should we go today- London or  San Francisco? Or you can say: `+ randomSurpriseMsg + `.`,
-  `Let's go (virutally) to cities where Google has offices. Choose from London and San Francisco. Or you can say: `+ randomSurpriseMsg + `. Now, what'll it be?`,
-  `Let's enjoy a little armchair travel. Would you like to see the sites in London or San Francisco?  Or you can say: `+ randomSurpriseMsg + `. Now, what'll it be?`,
-  `Where should we go today? London or San Francisco? Or you can say: `+ randomSurpriseMsg + `.`,
+  `Let's travel vicariously to cities where Google has offices. Choose from London, San Francisco, or Dublin. Or you can say: `+ randomSurpriseMsg + `. Now, what'll it be?`,
+  `Let's enjoy a little armchair travel. Would you like to see the sites in London, San Francisco, or Dublin? Or, you can say: ` + randomSurpriseMsg + `.`,
+  `Where should we go today? London, San Francisco, or Dublin?  Or you can say: `+ randomSurpriseMsg + `.  Now, what'll it be?`,
+  `Where should we go today? London, San Francisco, or Dublin? Or you can say: `+ randomSurpriseMsg + `.`,
+  `Forget the travel ban! Let's go (virtually) to cities where Google has offices. Choose from London, San Francisco, or Dublin. Or you can say: `+ randomSurpriseMsg + `. Now, what'll it be?`,
+  `Let's enjoy a little armchair travel. Would you like to see the sites in London, Dublin, or San Francisco?  Or you can say: `+ randomSurpriseMsg + `. Now, what'll it be?`,
+  `Where should we go today? London, Dublin, or San Francisco? Or you can say: `+ randomSurpriseMsg + `.`,
 ];
 
 //Error messages for all errors throughout action (except city selection)
@@ -85,11 +85,11 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   console.log('Dialogflow Request body: ' + JSON.stringify(request.body));
  
   function welcomeHandler(agent) {
-    var today = new Date();
-    var curHr = today.getHours();
-    var greet = ``;
+    let today = new Date();
+    let curHr = today.getHours();
+    let greet = ``;
     
-    var welcomeMsg = randomHelpMsgs[randomInt];
+    let welcomeMsg = randomHelpMsgs[randomIntSurprise];
    
     if (curHr < 12) {
       greet = "Good morning! " + welcomeMsg;
@@ -101,6 +101,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     agent.add(greet);
     agent.add(new Suggestion (`San Francisco`));
     agent.add(new Suggestion (`London`));
+    agent.add(new Suggestion (`Dublin`));
     agent.add(new Suggestion (randomSurpriseMsg));
   }
 
@@ -148,42 +149,113 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   }
 
   function getRandomSiteHandler(){
-    let masterCitiesArray = [`London`, `San Francisco`];
-    let masterCategoriesArray = [`Landmarks`, `Museums`, `Cultural Icons`];
-    let masterSitesArray = [
-      `Big Ben`,
-      `Buckingham Palace`,
-      `Fortnum And Mason`,
-      `Natural History Museum`,
-      `Picadilly Circus`,
-      `British Museum`,
-      `Tate Modern`,
-      `Tower of London`,
-      `Westminster Abbey`,
-      `Cable Cars`,
-      `Union Square`,
-      `Beach Blanket Revue`,
-      `Sutro Baths`,
-      `Angel Island`,
-      `Winchester Mystery House`,
-      `Asian Art Museum`,
-      `De Young Museum`,
-      `Monterey Bay Acquarium`
-    ];
-    let randomSiteInt = getRandom(0, 17);
-    randomSite = masterSitesArray[randomSiteInt];
-    userSite = randomSite;
-    agent.add(`This time, you're going to: ` + randomSite + `!`);
-    
+
+    //populate cities programmatically for scale
+    const masterCitiesArray = [`London`, `Dublin`, `San Francisco`];
+    const masterCategoriesArray = [`landmarks`, `museums`, `icons`];
+
+    //pick random city
+    const randomCityInt = getRandom(0, 2);
+    const randomCity = masterCitiesArray[randomCityInt];
+
+    //get random category
+    const randomCatInt = getRandom(0, 2);
+    const randomCat = masterCategoriesArray[randomCatInt];
 
 
+//NOTE: Need to populate sitesArray programmatically for scale //////////////////////////////////
 
+    switch(randomCity){
+      case 'London':
+        switch(randomCat){
+          case 'landmarks':
+            sitesArray = [`Big Ben`, `Buckingham Palace`, `Westminster Abbey`];
+          break;
+          case 'museums':
+            sitesArray = [`The British Museum`, `Tate Modern`, `Natural History Museum`];
+          break;
+          case 'icons':
+            sitesArray = [`Tower of London`, `Picadilly Circus`, `Fortnum And Mason`];
+          break;
+        }
+      break;
+      case 'San Francisco':
+        switch(randomCat){
+          case 'landmarks':
+            sitesArray = [`Sutro Baths`, `Angel Island`, `Winchester Mystery House`];
+          break;
+          case 'museums':
+            sitesArray = [`Asian Art Museum`, `De Young Museum`, `Monterey Bay Aquarium`];
+          break;
+          case 'icons':
+            sitesArray = [`Cable Cars`, `Union Square`, `Beach Blanket Revue`];
+          break;
+        }
+      break;
+      case 'Dublin':
+        switch(randomCat){
+          case 'landmarks':
+            sitesArray = [`Trinity College`, `St Patrick's Cathedral`, `Christchurch Cathedral`];
+          break;
+          case 'museums':
+            sitesArray = [`National Museum`, `Irish Emmigration Museum`, `The Little Museum`];
+          break;
+          case 'icons':
+            sitesArray = [`Guinness Store House`, `Dublin Castle`, `Kilmainham Gaol`];
+          break;
+        }
+      break;
+    }
+    ////////////////////////////////////// END SWITCH/CASE //////////////////////////////////////////////////
 
+    //get random site
+    const randomSiteInt = getRandom(0, 2);
+    const randomSite = sitesArray[randomSiteInt];
 
+    return admin.database().ref(randomCity).once('value').then((snapshot) => {
 
+      //setup vars to build a display card
+      const minTime = snapshot.child( '/' + randomCat + '/' + randomSite + '/min_time').val();
+      const maxTime = snapshot.child('/' + randomCat + '/' + randomSite + '/max_time').val();
+      const duration = ' **Time needed: **  ' + minTime + ' - ' + maxTime + ' hours';
+      const what = snapshot.child('/' + randomCat + '/' + randomSite + '/what').val();
+      const why = snapshot.child('/' + randomCat + '/' + randomSite + '/why').val();
+      const image = snapshot.child('/' + randomCat + '/' + randomSite + '/image').val();
+      const link = snapshot.child('/' + randomCat + '/' + randomSite + '/more').val();
 
+       if(what !== null){
 
-  }
+            //Example Sound Effect
+			      if(userSite == 'Cable Cars'){
+            	//play a sound to test ssml
+            	agent.add('<speak><audio src="https://actions.google.com/sounds/v1/transportation/ship_bell.ogg"><desc>Cable Car Bell</desc>Cable Car (sound didn\'t load)</audio></speak>');
+            }
+
+            //Display Basic Card
+            if(link !== 'na'){
+              agent.add(new Card({
+                title: randomSite,
+                text: duration + '  \n  \n **What is it?**  ' + what + '  \n  \n **Why go?**  ' + why,
+                imageUrl: image,
+                buttonText: 'more',
+                buttonUrl: link,
+                }));
+            }else{
+              agent.add(new Card({
+                title: randomSite,
+                text: duration + '  \n  \n **What is it?**  ' + what + '  \n  \n **Why go?**  ' + why,
+                imageUrl: image,
+                }));
+            }
+       
+       } else { //couldn't access data
+         let randomInt = getRandom(0, 9);
+         let errorMsg = randomErrorMsgs[randomInt];
+         agent.add(errorMsg);
+       } //end if/else
+    }); // end snapshot
+  }//end getRandomSiteHandler
+
 //This function fetches data from Realtime Database & displays it on a basic card
   function getSiteHandler(agent) {
     userSite = agent.parameters.site;
@@ -195,30 +267,36 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
       //setup vars to build a display card
       const minTime = snapshot.child( '/' + userCat + '/' + userSite + '/min_time').val();
       const maxTime = snapshot.child('/' + userCat + '/' + userSite + '/max_time').val();
-      const duration = '**Time:**  ' + minTime + ' - ' + maxTime + ' hours';
-      const category = snapshot.child('/' + userCat + '/' + userSite + '/category').val(); 
+      const duration = ' **Time needed:**  ' + minTime + ' - ' + maxTime + ' hours';
       const what = snapshot.child('/' + userCat + '/' + userSite + '/what').val();
       const why = snapshot.child('/' + userCat + '/' + userSite + '/why').val();
       const image = snapshot.child('/' + userCat + '/' + userSite + '/image').val();
       const link = snapshot.child('/' + userCat + '/' + userSite + '/more').val();
 
        if(what !== null){
-         
-            //agent.add(`Here's what I have for that: `);
 
-			if(userSite == 'Cable Cars'){
+			      if(userSite == 'Cable Cars'){
             	//play a sound to test ssml
             	agent.add('<speak><audio src="https://actions.google.com/sounds/v1/transportation/ship_bell.ogg"><desc>Cable Car Bell</desc>Cable Car (sound didn\'t load)</audio></speak>');
             }
-            agent.add(new Card({
+
+            //Display Basic Card
+            if(link !== 'na'){
+              agent.add(new Card({
                 title: userSite,
-                subtitle:category,
-                text: duration + '  \n  \n **What:**  ' + what + '  \n  \n **Why:**  ' + why,
+                text: duration + '  \n  \n **What is it?**  ' + what + '  \n  \n **Why go?**  ' + why,
                 imageUrl: image,
                 buttonText: 'more',
                 buttonUrl: link,
-            })
-          );
+                }));
+            }else{
+              agent.add(new Card({
+                title: userSite,
+                text: duration + '  \n  \n **What is it?**  ' + what + '  \n  \n **Why go?**  ' + why,
+                imageUrl: image,
+                }));
+            }
+     
        } else { //couldn't access data
          let randomInt = getRandom(0, 9);
          let errorMsg = randomErrorMsgs[randomInt];

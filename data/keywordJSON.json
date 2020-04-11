@@ -88,6 +88,95 @@
                 }
             }
         },
+        "Dublin": {
+            "landmarks":{
+                "Trinity College": {
+                    "category": "Landmark",
+                    "min_time": 1,
+                    "max_time": 2,
+                    "what": "Ireland’s oldest university and one of the world’s top schools, complete with sprawling courtyards, stone bell towers, and ancient manuscripts. In particular, the Long Hall is well worth the visit.",
+                    "why": "See the book of Kells, a 15th century harp, many marble sculptur, and a mesmerizing collection of 200,000 books in the Long Hall - a stunning wooden library.",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Long_Room_Interior%2C_Trinity_College_Dublin%2C_Ireland_-_Diliff.jpg",
+                    "more": "https://www.timeout.com/dublin/attractions/trinity-college"
+                 },
+                 "St Patricks Cathedral": {
+                    "category": "Landmark",
+                    "min_time": 0.5,
+                    "max_time": 1,
+                    "what": "Saint Patrick's Cathedral in Dublin, Ireland, founded in 1191, is the National Cathedral of the Church of Ireland. With its 43-metre spire, St. Patrick's is the tallest church in Ireland and the largest",
+                    "why": "To marvel at the gothic architecture and see the largest church in Dublin",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/a/af/Lady_Chapel_St._Patrick%27s_Cathedral_in_Dublin_012.JPG",
+                    "more": "na"
+                 },
+                 "Christ Church Cathedral": {
+                    "category": "Landmark",
+                    "min_time": 0.5,
+                    "max_time": 1,
+                    "what": "Christ Church Cathedral, more formally The Cathedral of the Holy Trinity, is the cathedral of the United Dioceses of Dublin and Glendalough and the cathedral of the ecclesiastical province of the United Provinces of Dublin and Cashel in the Church of Ireland.",
+                    "why": "Another stunning example of gothic architecture and located directly opposite St Patricks Cathedral",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Christ_Church_Cathedral%2C_Dublin%2C_2016-06-03.jpg",
+                    "more": "na"
+                 }
+            },
+            "museums":{
+                "The Little Museum": {
+                    "category": "Museum",
+                    "min_time": 0.75,
+                    "max_time": 1,
+                    "what": "Tucked inside a Georgian townhouse on St Stephen’s Green, the Little Museum of Dublin feels like a hoarder’s house. Featuring a wealth of cultural paraphernalia, from vintage posters to U2 memorabilia to a cardboard cut-out of Mrs Brown. Entry is through a guided tour only, which is just as well: the characterful staff have great fun telling the stories behind their favourite items.",
+                    "why": "Quirky and fun. A must-see if you're a U2 fan.",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Little_museum_front_room_lo.jpg",
+                    "more": "https://www.timeout.com/dublin/museums/little-museum-of-dublin"
+                 },
+                 "Irish Emmigration Museum": {
+                    "category": "Museum",
+                    "min_time": 1,
+                    "max_time": 2,
+                    "what": "The Irish Emmigration Museum details the movement of millions of Irish people who left their homes in search of opportunity, family and a better life. The museum is promises an interactive and fully immersive experience.",
+                    "why": "Many, many people worldwide claim Irish ancestry – and they are likely not wrong. With over 10 million leaving Ireland for other lands, it is no surprise they have left their mark on the world in a big way. The tagline of the museum sums it up perfectly: *10 million people, many destinations, one museum. Journey with them.*",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7a/EPIC_The_Irish_Emigration_Museum_I.jpg",
+                    "more": "na"
+                 },
+                 "Irish Whisky Museum": {
+                    "category": "Museum",
+                    "min_time": 1,
+                    "max_time": 2,
+                    "what": "On famed Grafton Street you will find the equally notorious Irish Whiskey Museum. Aptly named, the museum serves to highlight the past of the good stuff while educating on new brands and the future of Irish whiskey.",
+                    "why": "Whether you are a whiskey connoisseur or just love the culture of Dublin, this museum is ultra-modern and stands out among the crowd. There are distillery tours and pop-up breweries in abundance here, but none retell Irelands long-standing relationship with the spirit quite so dramatically as this excellent museum.",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Irish_Whiskey_Museum_bar.jpg",
+                    "more": "https://en.wikipedia.org/wiki/Union_Square,_San_Francisco"
+                 }
+            },
+            "icons":{
+                "Guinness Storehouse": {
+                    "category": "Icon",
+                    "min_time": 2,
+                    "max_time": 3,
+                    "what": "As Ireland’s most-visited attraction for years on end, there’s no escaping the might of the Guinness Storehouse. Make no mistake, it’s a seven-storey exhibition rather than a working brewery (that’s nearby but off-limits). Linger in the advertising section, which looks at its famous vintage posters and creative television ads, and leave plenty of time for the finale: a pint of the black stuff in the Gravity Bar, with sweeping views across Dublin.",
+                    "why": "FUN for all ages, easy and accessible. This is one of the best things to do in Dublin rain or shine.",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Guinness_Storehouse_exterior_3.jpg",
+                    "more": "https://www.timeout.com/dublin/bars-and-pubs/guinness-storehouse"
+                 },
+                 "Dublin Castle": {
+                    "category": "Icon",
+                    "min_time": 1.5,
+                    "max_time": 2,
+                    "what": "Dublin Castle is the heart of historic Dublin and is where the city gets its name from the Black Pool - 'Dubh Linn' which was on the site of the present Castle garden. The Castle houses the magnificent State Apartments part of the Viceregal court.",
+                    "why": "See the State Apartments, Medieval Undercroft, and Chapel Royal. There's also a tearoom in the State Apartments.",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d2/E4395-Dublin-Castle.jpg",
+                    "more": "https://www.timeout.com/dublin/attractions/dublin-castle"
+                 },
+                 "Kilmainham Gaol": {
+                    "category": "Icon",
+                    "min_time": 1.5,
+                    "max_time": 2,
+                    "what": "Kilmainham Gaol is a fascinating former jail-turned-museum, and is yet another moving reminder of Ireland’s turbulent history. Throughout its 300 years of existence, it held everyone from members of the Irish Republican movement to straight-up murderers.",
+                    "why": "Considered by many a staunch symbol of Irish Nationalism, the Gaol now serves as an educational institute offering tours of its hallowed cells, chapels and grounds.",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/4/43/Kilmainham_Gaol_Prison.jpg",
+                    "more": "https://www.timeout.com/dublin/museums/kilmainham-gaol"
+                 }
+            }
+        },
         "San Francisco": {
             "landmarks":{
                 "Sutro Baths": {
@@ -177,4 +266,4 @@
                 }
             }
         }
-    }
+      }
