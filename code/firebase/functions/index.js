@@ -26,29 +26,27 @@ let userSite = '';
 let sitesArray = [];
 
 const randomSurpriseMsgs = [
-  `surprise me`,
+  `make it a surprise`,
   `roll the dice`,
   `spin the wheel`,
-  `dealer's choice`,
-  `russian roulette`,
+  `play Russian roulette`,
   `take a chance`,
-  `random choice`,
-  `let's live dangerously`,
+  `pick a random one`,
+  `live dangerously`,
   `live on the wild side`
 ];
 
-const randomIntSurprise = getRandom(0, 6);
+const randomIntSurprise = getRandom(0, 5);
 const randomSurpriseMsg = randomSurpriseMsgs[randomIntSurprise];
 
 //welcome and help messages 
 const randomHelpMsgs = [
-  `Let's travel vicariously to cities where Google has offices. Choose from London, San Francisco, or Dublin. Or you can say: `+ randomSurpriseMsg + `. Now, what'll it be?`,
-  `Let's enjoy a little armchair travel. Would you like to see the sites in London, San Francisco, or Dublin? Or, you can say: ` + randomSurpriseMsg + `.`,
-  `Where should we go today? London, San Francisco, or Dublin?  Or you can say: `+ randomSurpriseMsg + `.  Now, what'll it be?`,
-  `Where should we go today? London, San Francisco, or Dublin? Or you can say: `+ randomSurpriseMsg + `.`,
-  `Forget the travel ban! Let's go (virtually) to cities where Google has offices. Choose from London, San Francisco, or Dublin. Or you can say: `+ randomSurpriseMsg + `. Now, what'll it be?`,
-  `Let's enjoy a little armchair travel. Would you like to see the sites in London, Dublin, or San Francisco?  Or you can say: `+ randomSurpriseMsg + `. Now, what'll it be?`,
-  `Where should we go today? London, Dublin, or San Francisco? Or you can say: `+ randomSurpriseMsg + `.`,
+  `Let's travel vicariously to cities where Google has offices. See the sites in London, Dublin, or San Francisco. Or shall we `+ randomSurpriseMsg + `?`,
+  `Let's enjoy a little armchair travel. Would you like to see the sites in London, Dublin, or San Francisco? Or shall we ` + randomSurpriseMsg + `.`,
+  `Where shall we go (virtually!) and what shall we do today? London, Dublin, or San Francisco?  Or shall we `+ randomSurpriseMsg + `?`,
+  `Forget the travel ban! Let's see major sites (virtually!) in cities where Google has offices. Choose from London, Dublin, or San Francisco. Or shall we `+ randomSurpriseMsg + `?`,
+ `Let's enjoy a little armchair travel. Would you like to see the sites in London, Dublin, or San Francisco?  Or you can say: `+ randomSurpriseMsg + `. Now, what'll it be?`,
+  `What shall we do today? Shall we see the sites in London, Dublin, or San Francisco?  Or you can say: `+ randomSurpriseMsg + `. Now, what'll it be?`
 ];
 
 //Error messages for all errors throughout action (except city selection)
@@ -217,7 +215,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
       //setup vars to build a display card
       const minTime = snapshot.child( '/' + randomCat + '/' + randomSite + '/min_time').val();
       const maxTime = snapshot.child('/' + randomCat + '/' + randomSite + '/max_time').val();
-      const duration = ' **Time needed: **  ' + minTime + ' - ' + maxTime + ' hours';
+      const duration = '**Time needed:**  ' + minTime + ' - ' + maxTime + ' hours';
       const what = snapshot.child('/' + randomCat + '/' + randomSite + '/what').val();
       const why = snapshot.child('/' + randomCat + '/' + randomSite + '/why').val();
       const image = snapshot.child('/' + randomCat + '/' + randomSite + '/image').val();
@@ -235,7 +233,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
             if(link !== 'na'){
               agent.add(new Card({
                 title: randomSite,
-                text: duration + '  \n  \n **What is it?**  ' + what + '  \n  \n **Why go?**  ' + why,
+                text: duration + '  \n  \n**What is it?**  ' + what + '  \n   \n**Why go?**  ' + why,
                 imageUrl: image,
                 buttonText: 'more',
                 buttonUrl: link,
@@ -243,7 +241,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
             }else{
               agent.add(new Card({
                 title: randomSite,
-                text: duration + '  \n  \n **What is it?**  ' + what + '  \n  \n **Why go?**  ' + why,
+                text: duration + '  \n  \n**What is it?**  ' + what + '  \n   \n**Why go?**  ' + why,
                 imageUrl: image,
                 }));
             }
@@ -267,7 +265,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
       //setup vars to build a display card
       const minTime = snapshot.child( '/' + userCat + '/' + userSite + '/min_time').val();
       const maxTime = snapshot.child('/' + userCat + '/' + userSite + '/max_time').val();
-      const duration = ' **Time needed:**  ' + minTime + ' - ' + maxTime + ' hours';
+      const duration = '**Time needed:**  ' + minTime + ' - ' + maxTime + ' hours';
       const what = snapshot.child('/' + userCat + '/' + userSite + '/what').val();
       const why = snapshot.child('/' + userCat + '/' + userSite + '/why').val();
       const image = snapshot.child('/' + userCat + '/' + userSite + '/image').val();
@@ -284,7 +282,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
             if(link !== 'na'){
               agent.add(new Card({
                 title: userSite,
-                text: duration + '  \n  \n **What is it?**  ' + what + '  \n  \n **Why go?**  ' + why,
+                text: duration + '  \n  \n**What is it?**  ' + what + '  \n  \n**Why go?**  ' + why,
                 imageUrl: image,
                 buttonText: 'more',
                 buttonUrl: link,
@@ -292,7 +290,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
             }else{
               agent.add(new Card({
                 title: userSite,
-                text: duration + '  \n  \n **What is it?**  ' + what + '  \n  \n **Why go?**  ' + why,
+                text: duration + '  \n  \n**What is it?**  ' + what + '  \n  \n**Why go?**  ' + why,
                 imageUrl: image,
                 }));
             }

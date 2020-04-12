@@ -103,7 +103,7 @@
                     "category": "Landmark",
                     "min_time": 0.5,
                     "max_time": 1,
-                    "what": "Saint Patrick's Cathedral in Dublin, Ireland, founded in 1191, is the National Cathedral of the Church of Ireland. With its 43-metre spire, St. Patrick's is the tallest church in Ireland and the largest",
+                    "what": "Saint Patrick's Cathedral in Dublin, Ireland, founded in 1191, is the National Cathedral of the Church of Ireland. With its 43-metre spire, St. Patrick's is the tallest church in Ireland and the largest.",
                     "why": "To marvel at the gothic architecture and see the largest church in Dublin",
                     "image": "https://upload.wikimedia.org/wikipedia/commons/a/af/Lady_Chapel_St._Patrick%27s_Cathedral_in_Dublin_012.JPG",
                     "more": "na"
@@ -144,7 +144,7 @@
                     "what": "On famed Grafton Street you will find the equally notorious Irish Whiskey Museum. Aptly named, the museum serves to highlight the past of the good stuff while educating on new brands and the future of Irish whiskey.",
                     "why": "Whether you are a whiskey connoisseur or just love the culture of Dublin, this museum is ultra-modern and stands out among the crowd. There are distillery tours and pop-up breweries in abundance here, but none retell Irelands long-standing relationship with the spirit quite so dramatically as this excellent museum.",
                     "image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Irish_Whiskey_Museum_bar.jpg",
-                    "more": "https://en.wikipedia.org/wiki/Union_Square,_San_Francisco"
+                    "more": "na"
                  }
             },
             "icons":{
