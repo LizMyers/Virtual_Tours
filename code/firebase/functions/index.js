@@ -3,8 +3,8 @@
 //By Liz Myers
 //Content by: Lisa Guinn (SF)
 //Advisors: Jessica Dene Earley-Cha, Priyanka Vergadia
-//April 11, 2020
-//Version 1.6
+//April 12, 2020
+//Version 1.7.1
 
 'use strict';
  
@@ -130,25 +130,26 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     
   userCat = agent.parameters.category;
 
+  //returns the 3 sites for a given city and category
   return admin.database().ref(userCity).once('value').then((snapshot) => {
-      var sitesArr = [];
+        sitesArray = [];
         snapshot.child('/' + userCat + '/').forEach(data => {
           var site = '';
           site = data.key;
-          sitesArr.push(site);
+          sitesArray.push(site);
         });
      
-        agent.add(`Here are the `+ userCat +` I have: ` + sitesArr[0] + ', ' + sitesArr[1] + `,  and `+ sitesArr[2]);
-        agent.add(new Suggestion(sitesArr[0]));
-        agent.add(new Suggestion(sitesArr[1]));
-        agent.add(new Suggestion(sitesArr[2]));     
+        agent.add(`Here are the `+ userCat +` I have: ` + sitesArray[0] + ', ' + sitesArray[1] + `,  and `+ sitesArray[2]);
+        agent.add(new Suggestion(sitesArray[0]));
+        agent.add(new Suggestion(sitesArray[1]));
+        agent.add(new Suggestion(sitesArray[2]));     
         agent.add(`Which would you like?`);
     });
   }
 
   function getRandomSiteHandler(){
 
-    //populate cities programmatically for scale
+    //TO-DO: populate cities programmatically for scale
     const masterCitiesArray = [`London`, `Dublin`, `San Francisco`];
     const masterCategoriesArray = [`landmarks`, `museums`, `icons`];
 
@@ -160,89 +161,51 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     const randomCatInt = getRandom(0, 2);
     const randomCat = masterCategoriesArray[randomCatInt];
 
-
-//NOTE: Need to populate sitesArray programmatically for scale //////////////////////////////////
-
-    switch(randomCity){
-      case 'London':
-        switch(randomCat){
-          case 'landmarks':
-            sitesArray = [`Big Ben`, `Buckingham Palace`, `Westminster Abbey`];
-          break;
-          case 'museums':
-            sitesArray = [`The British Museum`, `Tate Modern`, `Natural History Museum`];
-          break;
-          case 'icons':
-            sitesArray = [`Tower of London`, `Picadilly Circus`, `Fortnum And Mason`];
-          break;
-        }
-      break;
-      case 'San Francisco':
-        switch(randomCat){
-          case 'landmarks':
-            sitesArray = [`Sutro Baths`, `Angel Island`, `Winchester Mystery House`];
-          break;
-          case 'museums':
-            sitesArray = [`Asian Art Museum`, `De Young Museum`, `Monterey Bay Aquarium`];
-          break;
-          case 'icons':
-            sitesArray = [`Cable Cars`, `Union Square`, `Beach Blanket Revue`];
-          break;
-        }
-      break;
-      case 'Dublin':
-        switch(randomCat){
-          case 'landmarks':
-            sitesArray = [`Trinity College`, `St Patrick's Cathedral`, `Christchurch Cathedral`];
-          break;
-          case 'museums':
-            sitesArray = [`National Museum`, `Irish Emmigration Museum`, `The Little Museum`];
-          break;
-          case 'icons':
-            sitesArray = [`Guinness Store House`, `Dublin Castle`, `Kilmainham Gaol`];
-          break;
-        }
-      break;
-    }
-    ////////////////////////////////////// END SWITCH/CASE //////////////////////////////////////////////////
-
+    //return the 3 sites for a random city and random category
+    return admin.database().ref(randomCity).once('value').then((snapshot) => {
+        sitesArray = [];
+        snapshot.child('/' + randomCat + '/').forEach(data => {
+          var site = '';
+          site = data.key;
+          sitesArray.push(site);
+        });
+      
     //get random site
     const randomSiteInt = getRandom(0, 2);
     const randomSite = sitesArray[randomSiteInt];
 
-    return admin.database().ref(randomCity).once('value').then((snapshot) => {
-
-      //setup vars to build a display card
-      const minTime = snapshot.child( '/' + randomCat + '/' + randomSite + '/min_time').val();
-      const maxTime = snapshot.child('/' + randomCat + '/' + randomSite + '/max_time').val();
-      const duration = '**Time needed:**  ' + minTime + ' - ' + maxTime + ' hours';
-      const what = snapshot.child('/' + randomCat + '/' + randomSite + '/what').val();
-      const why = snapshot.child('/' + randomCat + '/' + randomSite + '/why').val();
-      const image = snapshot.child('/' + randomCat + '/' + randomSite + '/image').val();
-      const link = snapshot.child('/' + randomCat + '/' + randomSite + '/more').val();
+    //setup vars to build a display card
+    const minTime = snapshot.child( '/' + randomCat + '/' + randomSite + '/min_time').val();
+    const maxTime = snapshot.child('/' + randomCat + '/' + randomSite + '/max_time').val();
+    const duration = '**Time needed:**  ' + minTime + ' - ' + maxTime + ' hours';
+    const randCity = '**City:**  ' + randomCity; //needed for random where displayed out of context
+    const what = snapshot.child('/' + randomCat + '/' + randomSite + '/what').val();
+    const why = snapshot.child('/' + randomCat + '/' + randomSite + '/why').val();
+    const image = snapshot.child('/' + randomCat + '/' + randomSite + '/image').val();
+    const link = snapshot.child('/' + randomCat + '/' + randomSite + '/more').val();
 
        if(what !== null){
 
-            //Example Sound Effect
-			      if(userSite == 'Cable Cars'){
-            	//play a sound to test ssml
-            	agent.add('<speak><audio src="https://actions.google.com/sounds/v1/transportation/ship_bell.ogg"><desc>Cable Car Bell</desc>Cable Car (sound didn\'t load)</audio></speak>');
-            }
+            ////////////////////////////////// EXAMPLE SOUND EFFECT ///////////////////////////////////
+			      // if(userSite == 'Cable Cars'){
+            // 	//play a sound to test ssml
+            // 	agent.add('<speak><audio src="https://actions.google.com/sounds/v1/transportation/ship_bell.ogg"><desc>Cable Car Bell</desc>Cable Car (sound didn\'t load)</audio></speak>');
+            // }
 
-            //Display Basic Card
-            if(link !== 'na'){
+            //Display Card
+            if(link !== 'na'){//This card has a more link
               agent.add(new Card({
                 title: randomSite,
-                text: duration + '  \n  \n**What is it?**  ' + what + '  \n   \n**Why go?**  ' + why,
+                text: randCity + '  \n  \n' + duration + '  \n  \n**What is it?**  ' + what + '  \n   \n**Why go?**  ' + why,
                 imageUrl: image,
                 buttonText: 'more',
-                buttonUrl: link,
+                buttonUrl: link
                 }));
             }else{
-              agent.add(new Card({
+              agent.add(new Card({//This card does not have a more link
                 title: randomSite,
-                text: duration + '  \n  \n**What is it?**  ' + what + '  \n   \n**Why go?**  ' + why,
-                imageUrl: image,
+                text: randCity + '  \n  \n' + duration + '  \n  \n**What is it?**  ' + what + '  \n   \n**Why go?**  ' + why,
+                imageUrl: image
                 }));
             }
        
@@ -254,7 +217,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     }); // end snapshot
   }//end getRandomSiteHandler
 
-//This function fetches data from Realtime Database & displays it on a basic card
+//This function fetches data from Realtime Database & displays it on a card
   function getSiteHandler(agent) {
     userSite = agent.parameters.site;
     //let userSiteNameLowerCase = userSiteName.toLowerCase;
@@ -278,7 +241,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
             	agent.add('<speak><audio src="https://actions.google.com/sounds/v1/transportation/ship_bell.ogg"><desc>Cable Car Bell</desc>Cable Car (sound didn\'t load)</audio></speak>');
             }
 
-            //Display Basic Card
+            //Display Card
             if(link !== 'na'){
               agent.add(new Card({
                 title: userSite,
