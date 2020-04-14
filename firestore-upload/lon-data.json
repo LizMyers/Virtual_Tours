@@ -1,0 +1,101 @@
+[
+    {
+      "NAME": "Picadilly Circus",
+      "CITY": "london",
+      "CAT": "icon",
+      "MIN_TIME": 0.25,
+      "MAX_TIME": 0.5,
+      "WHAT": "This busy spot was built in 1819, as a way to connect Regent Street with Piccadilly. Over the years, it’s become an iconic London landmark thanks to the Shaftesbury Memorial, the statue of Anteros and the illuminated advertising hoardings (fun fact: the first ad was for Perrier in 1908).",
+      "WHY": "You wouldn't go to NYC and skip Times Square now - would you?",
+      "IMG": "gs://virtualtours-a7cea.appspot.com/picadilly_circus.jpg",
+      "LINK": "https://upload.wikimedia.org/wikipedia/commons/9/93/Clock_Tower_-_Palace_of_Westminster%2C_London_-_May_2007.jpg"
+    },
+    {
+      "NAME": "Fortnum & Mason",
+      "CITY": "london",
+      "CAT": "icon",
+      "MIN_TIME": 0.5,
+      "MAX_TIME": 1,
+      "WHAT": "In business for over 300 years, Fortnum & Mason is as historic as it is inspiring. A sweeping spiral staircase soars through the four-storey building, while light floods down from a central glass dome.\n\nA sweeping spiral staircase soars through the four-storey building, while light floods down from a central glass dome. The iconic F&M eau de nil blue and gold colour scheme with flashes of rose pink abounds on both the store design and the packaging of the fabulous ground-floor treats, including chocolates, biscuits, teas and preserves.",
+      "WHY": "To visit the Queens grocery store and pick up a few gifts.",
+      "IMG": "gs://virtualtours-a7cea.appspot.com/fortnum_and_mason.jpg",
+      "LINK": "https://upload.wikimedia.org/wikipedia/commons/9/93/Clock_Tower_-_Palace_of_Westminster%2C_London_-_May_2007.jpg"
+    },
+    {
+      "NAME": "Tower of London",
+      "CITY": "london",
+      "CAT": "icon",
+      "MIN_TIME": 2,
+      "MAX_TIME": 3,
+      "WHAT": "One of the capital’s best and most well known historical attractions. The Tower of London offers wonderful architecture, gruesome stories, hands-on activities for younger visitors, costumed actors and guides, and worryingly confident ravens.",
+      "WHY": "To see the crown jewels and interact with the Yomen. They delight in explaining the gruesome bits of British history.",
+      "IMG": "gs://virtualtours-a7cea.appspot.com/tower_of_london.jpg",
+      "LINK": "https://upload.wikimedia.org/wikipedia/commons/9/93/Clock_Tower_-_Palace_of_Westminster%2C_London_-_May_2007.jpg"
+    },
+    {
+      "NAME": "Big Ben",
+      "CITY": "london",
+      "CAT": "landmark",
+      "MIN_TIME": 0.25,
+      "MAX_TIME": 0.5,
+      "WHAT": "Big Ben is the nickname of the Great Bell inside Westminster’s iconic clock tower, but even locals think ‘Big Ben’ when they see the Elizabeth Tower. You can’t get inside for a tour until 2021 due to maintenance work but you’re a minute away from the river, the Houses of Parliament and Westminster Abbey here, so it’s an easy visit.",
+      "WHY": "To see the world's most celebrated clock face to face.",
+      "IMG": "gs://virtualtours-a7cea.appspot.com/big_ben.jpg",
+      "LINK": "https://upload.wikimedia.org/wikipedia/commons/9/93/Clock_Tower_-_Palace_of_Westminster%2C_London_-_May_2007.jpg"
+    },
+    {
+      "NAME": "Buckingham Palace",
+      "CITY": "london",
+      "CAT": "landmark",
+      "MIN_TIME": 0.5,
+      "MAX_TIME": 2,
+      "WHAT": "A chance to see world-famous art, glimpse regal opulence and get inside HRH’s headquarters. Tourist and locals alike know the façade of Buckingham Palace, which stands at the end of The Mall. But it was only in 1913 that this addition was made, by King George V and Queen Mary. Before that, in 1633, the palace wasn’t even royal – it belonged to Lord Goring, who was forced to hand over ownership to the Royal Family (under King George III) due to a flaw in his contract. Whoops!",
+      "WHY": "To snoop around the most famous royal residence in the world.",
+      "IMG": "gs://virtualtours-a7cea.appspot.com/buckingham_palace.jpg",
+      "LINK": "https://upload.wikimedia.org/wikipedia/commons/9/93/Clock_Tower_-_Palace_of_Westminster%2C_London_-_May_2007.jpg"
+    },
+    {
+      "NAME": "Westminster Abbey",
+      "CITY": "london",
+      "CAT": "landmark",
+      "MIN_TIME": 1,
+      "MAX_TIME": 2,
+      "WHAT": "Like the Pantheon Crypt in Paris, where you can see the tombs and memorials to great figures from history, Westminster Abbey is a popular attraction to peruse the graves, tablets, busts and stone dedications. In fact, seventeen monarchs are buried here, along with dukes, countesses and history’s ‘celebs’ (Darwin, Dickens, Hardy, etc). Founded by Benedictine monks in 960 AD, there have also been 16 royal weddings here and every single British coronation has taken place within the Abbey's walls since 1066.",
+      "WHY": "To see Gothic grandeur at its most glorious",
+      "IMG": "gs://virtualtours-a7cea.appspot.com/westminster_abbey.jpg",
+      "LINK": "https://upload.wikimedia.org/wikipedia/commons/9/93/Clock_Tower_-_Palace_of_Westminster%2C_London_-_May_2007.jpg"
+    },
+    {
+      "NAME": "The British Museum",
+      "CITY": "london",
+      "CAT": "museum",
+      "MIN_TIME": 2,
+      "MAX_TIME": 4,
+      "WHAT": "Since it opened in 1759 – the first ever national museum for the public – the British museum has been displaying global artefacts discovered by British explorers. Must-see gems include the Rosetta Stone and the Parthenon sculptures.",
+      "WHY": "The museum has over eight million objects in its collection, 50,000 of which are on display. That's a lot of bang for your buck, considering entrance to the main areas is free.",
+      "IMG": "gs://virtualtours-a7cea.appspot.com/british_museum.jpg",
+      "LINK": "https://upload.wikimedia.org/wikipedia/commons/9/93/Clock_Tower_-_Palace_of_Westminster%2C_London_-_May_2007.jpg"
+    },
+    {
+      "NAME": "Natural History Museum",
+      "CITY": "london",
+      "CAT": "museum",
+      "MIN_TIME": 2,
+      "MAX_TIME": 4,
+      "WHAT": "The magnificent South Kensington home of around 80 million plant, animal, fossil, rock and mineral specimens. This fascinating museum, which is also a world-class research institution, is full of natural wonders.",
+      "WHY": "To marvel at a 25.2 metre-long blue whale skeleton, a piece of Mars rock, Mary Anning's ichthyosaur fossil and lots more.",
+      "IMG": "gs://virtualtours-a7cea.appspot.com/natural_history_museum.jpg",
+      "LINK": "https://upload.wikimedia.org/wikipedia/commons/9/93/Clock_Tower_-_Palace_of_Westminster%2C_London_-_May_2007.jpg"
+    },
+    {
+      "NAME": "The Tate Modern",
+      "CITY": "london",
+      "CAT": "museum",
+      "MIN_TIME": 2,
+      "MAX_TIME": 4,
+      "WHAT": "A riverside icon dedicated to all things modern and contemporary art. Based in what was the Bankside Power Station, you can discover works by the likes of Warhol, Dalí and Hockney, as well as unusual, eye-grabbing installations, which are all part of the free permanent collection.",
+      "WHY": "For some of the best art and architecture London has to offer.",
+      "IMG": "gs://virtualtours-a7cea.appspot.com/tate_modern.jpg",
+      "LINK": "https://upload.wikimedia.org/wikipedia/commons/9/93/Clock_Tower_-_Palace_of_Westminster%2C_London_-_May_2007.jpg"
+    }
+]
