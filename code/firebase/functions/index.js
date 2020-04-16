@@ -3,8 +3,8 @@
 //By Liz Myers
 //Content by: Lisa Guinn (SF)
 //Advisors: Jessica Dene Earley-Cha, Priyanka Vergadia
-//April 14, 2020
-//Version 2.1.0
+//April 12, 2020
+//Version 1.7.1
 
 'use strict';
  
@@ -86,8 +86,8 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     let today = new Date();
     let curHr = today.getHours();
     let greet = ``;
-    
-    let welcomeMsg = randomHelpMsgs[randomIntSurprise];
+    let randomWelcomeInt = getRandom(0, 5);
+    let welcomeMsg = randomHelpMsgs[randomWelcomeInt];
    
     if (curHr < 12) {
       greet = "Good morning! " + welcomeMsg;

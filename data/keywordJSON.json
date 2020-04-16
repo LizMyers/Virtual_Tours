@@ -7,7 +7,7 @@
                     "max_time": 0.5,
                     "what": "Big Ben is the nickname of the Great Bell inside Westminster’s iconic clock tower, but even locals think ‘Big Ben’ when they see the Elizabeth Tower. You can’t get inside for a tour until 2021 due to maintenance work but you’re a minute away from the river, the Houses of Parliament and Westminster Abbey here, so it’s an easy visit.",
                     "why": "To see the world's most celebrated clock face to face.",
-                    "image": "https://upload.wikimedia.org/wikipedia/commons/9/93/Clock_Tower_-_Palace_of_Westminster%2C_London_-_May_2007.jpg",
+                    "image": "https://storage.cloud.google.com/virtual-tours-usycht/big_ben.jpg",
                     "more": "https://www.timeout.com/london/attractions/big-ben-1"
                 },
                 "Buckingham Palace": {
@@ -237,15 +237,15 @@
                 }
             },
             "icons":{
-                "Beach Blanket Revue": {
+                "Golden Gate Bridge": {
                     "category": "Icon",
-                    "min_time": 3,
-                    "max_time": 3.5,
-                    "what": "Wacky, saucy, and uniquely San Franciscan Beach Blanket Babylon claims the title of longest running musical revue in theater history. Its pun-laden send-ups of a shifting array of public figures, pop icons and dubious celebrities are loosely tied together under the auspices of a Snow White tale, but really this is just a vehicle to poke fun at everyone from Kim Kardashian and Hillary Clinton to the British Royal Family and Lady Gaga—all while sporting hats the size of small zeppelins.",
-                    "why": "why see this? For the hats!",
-                    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Comedy_and_tragedy_masks_without_background.svg",
-                    "more": "https://www.beachblanketbabylon.com/"
-                },
+                    "min_time": 1.5,
+                    "max_time": 2,
+                    "what": "The Golden Gate Bridge is the ultimate San Francisco icon, instantly recognized around the world. You can either look at the bridge or walk across it; either way, you will have great views. It was initially designed by engineer Joseph Strauss in 1917, and has been declared one of the Wonders of the Modern World by the American Society of Civil Engineers.  \n  \n**Note: If you are driving to the bridge**, park in one of the lots off Lincoln Avenue on the San Francisco side, then walk to one of the vista points or across the bridge from there. Parking at the vista point on the Sausalito side is generally impossible due to crowds.",
+                    "why": "Have you actually seen San Francisco if you didn't see the Golden Gate Bridge? But be aware that on a foggy day, the bridge may be hard to see unless you are walking on it! The early afternoon is generally when the fog is at a minimum.",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/0/0c/GoldenGateBridge-001.jpg",
+                    "more": "https://en.wikipedia.org/wiki/Golden_Gate_Bridge"
+                 },
                 "Cable Cars": {
                     "category": "Icon",
                     "min_time": 0.5,
